@@ -358,41 +358,41 @@ namespace graph {
 
     Graph* Algorithms::Dijkstra(Graph* graph, int src) {
        int numVertices = graph->getNumVertices();
-        bool* visited = new bool[numVertices]();  // Boolean array to track visited vertices
-        int* shortestDist = new int[numVertices];  // Array to store the shortest distance from src to each vertex
-        Graph* resultGraph = new Graph(numVertices);  // The graph to store the result (shortest paths)
-        Heap heap(numVertices);  // Min-heap to select the vertex with the smallest tentative distance
+        bool* visited = new bool[numVertices]();  
+        int* shortestDist = new int[numVertices];  
+        Graph* resultGraph = new Graph(numVertices);  
+        Heap heap(numVertices);  
         
-        // Initialize distances to all vertices as infinity
+       
         for (int i = 0; i < numVertices; i++) {
             shortestDist[i] = INT_MAX;
         }
-        shortestDist[src] = 0;  // Distance to the source vertex is 0
+        shortestDist[src] = 0;  
         
         Node* currNeighbour = graph->getAdjList(src);
-        visited[src] = true;  // Mark the source as visited
+        visited[src] = true;  
 
-        // Push all neighbours of the source to the heap
+
         while (currNeighbour != nullptr) {
             heap.push(currNeighbour->weight, currNeighbour->vertex, src);
             currNeighbour = currNeighbour->next;
         }
 
-        // Start processing the heap
+       
         while (!heap.isEmpty()) {
-            Edge currEdge = heap.pop();  // Get the edge with the smallest tentative distance
+            Edge currEdge = heap.pop();  
             int srcVertex = currEdge.srcedge;
             int dstVertex = currEdge.dstedge;
             int edgeWeight = currEdge.weight;
 
-            // Skip if the destination vertex has already been visited
+
             if (visited[dstVertex]) continue;
 
-            // Mark the destination vertex as visited and add the edge to the result graph
+
             visited[dstVertex] = true;
             resultGraph->addEdge(srcVertex, dstVertex, edgeWeight);
             
-            // Update the shortest distances for the neighbors of the current vertex
+
             Node* neighbour = graph->getAdjList(dstVertex);
             while (neighbour != nullptr) {
                 int newDist = shortestDist[srcVertex] + neighbour->weight;
