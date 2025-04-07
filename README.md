@@ -254,6 +254,11 @@ Loop through each sorted edge and check if the vertices of the edge belong to th
 If they are in different sets, add the edge to the MST and unite the sets using the union_sets operation. This ensures no cycles are formed.
 Return the MST: Once all edges are processed, return the mst graph containing the minimum spanning tree.
 
+Bibliography:
+https://www.youtube.com/@coding_with_rai/videos.
+Moodle of courses from last Semester.
+https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/--(also for the other algorithms).
+
 
 
 
